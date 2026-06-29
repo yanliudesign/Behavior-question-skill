@@ -1,44 +1,66 @@
+**English · [中文](./README.zh-CN.md)**
+
 # BQ Skill — Career Story OS
 
-帮求职者把"会回答某道行为面试题"升级成"拥有一套可复用的职业故事库"。
+A Claude / Copilot skill that turns *"I can answer this one behavioral question"* into *"I own a reusable bank of career stories."* It mines your real experiences, structures them with STAR/CAR, maps them to competencies, and builds a bilingual (EN/中文) story bank you can reuse across any behavioral interview.
 
-## 核心循环
-挖掘 (Mine) → 结构化 (Structure) → 打标 (Map) → 沉淀 (Save) → 复用 (Reuse)
+## Core loop
+Mine → Structure → Map → Save → Reuse
 
-## 目录
+## Layout
 ```
 bq-skill/
-├── SKILL.md                      # 入口：意图路由 + 五条流程
+├── SKILL.md                      # Entry point: intent routing + five flows
 ├── prompts/
-│   ├── story-mining.md           # ★ 四层追问引擎（流程 A）
-│   ├── structuring.md            # 诊断+改写已有答案（流程 C）
-│   └── jd-driven-prep.md         # ★ JD×简历 → Top 20 选题 + STAR 模板（流程 E）
+│   ├── story-mining.md           # ★ Four-layer probing engine (Flow A)
+│   ├── structuring.md            # Diagnose + rewrite an existing answer (Flow C)
+│   └── jd-driven-prep.md         # ★ JD × resume → Top 20 questions + STAR templates (Flow E)
 ├── frameworks/
-│   ├── star-car.md               # STAR/CAR/SOAR 选择 + 一稿多用
-│   ├── competency-tags.md        # 能力标签词典 + BQ 题型反查
-│   └── company-profiles.md       # Amazon LP / Meta / Anthropic / OpenAI 风格
+│   ├── star-car.md               # STAR/CAR/SOAR selection + one story, many questions
+│   ├── competency-tags.md        # Competency dictionary + BQ reverse-lookup
+│   └── company-profiles.md       # Amazon LP / Meta / Anthropic / OpenAI styles
 ├── assets/
-│   └── bq-prep-report.md         # 流程 E 的 editorial HTML 报告规范
-└── story-bank/                    # 用户资产，每个故事一个 .md
-    ├── _index.md                 # 能力标签 → 故事 反查表
-    ├── _story-template.md        # 故事模板
-    └── convince-team-rewrite.md  # 示例故事（可删）
+│   └── bq-prep-report.md         # Editorial HTML report spec for Flow E
+└── story-bank/                    # User asset — one .md per story
+    ├── _index.md                 # Competency → story reverse-lookup table
+    ├── _story-template.md        # Story template
+    └── convince-team-rewrite.md  # Example story (safe to delete)
 ```
 
-## 与 job-description-skill 挂钩
-流程 E 直接复用 [job-description-skill](https://github.com/yanliudesign/job-description-skill) 解码出的
-Must Have + Hidden Signals，针对某个具体岗位反推 **Top 20 BQ 选题**，并用简历里的真实经历
-为每题搭 STAR 准备模板，输出一份 editorial 风格的 HTML 报告。形成 Career Copilot 闭环：
-JD 解码 → 匹配/改简历 → **BQ 选题 + 故事准备**。
+## The five flows
+- **A · Mine a new story** — a four-layer probing engine that pulls real, signal-rich, quantifiable events out of someone who thinks "I have nothing to talk about," then deepens one into a bank-ready story.
+- **B · Answer a specific BQ** — check the bank first, reuse a hit, or mine a new one on the spot.
+- **C · Polish an existing answer** — diagnose structure problems (Situation too long, "I" vs "we", no quantified result) and rewrite.
+- **D · Mock interview** — one question at a time in the target company's style, with feedback.
+- **E · JD-driven prep** — see below.
 
-## 用法
-对 Claude 说"帮我准备 behavioral 面试""帮我挖一个故事建库""贴一道 BQ 帮我答"，或直接 `/bq-skill`。
+## Hooks into job-description-skill
+Flow E reuses the **Must-Haves + Hidden Signals** decoded by
+[job-description-skill](https://github.com/yanliudesign/job-description-skill) to reverse-engineer a
+**Top 20 interview-question set** for one specific role, builds a STAR prep template per question from
+the candidate's real resume, and outputs an editorial-style HTML report. Together the three skills form
+a Career Copilot loop: **JD decode → match / tailor résumé → BQ prep + story building.**
 
-## 版本
-- **v0.6（当前）**：Story Mining 引擎 + 单故事完整闭环 + 双语产出 + 轻量模拟 + **流程 E（JD 驱动 Top 20 选题 + STAR 模板 + editorial HTML 报告，挂钩 job-description-skill）**。
-- v1 计划：能力词典/公司档案加深、库检索复用打磨。
-- v2 计划：模拟面试加深（按公司出题 + 评分反馈）。
+## Usage
+Tell Claude *"help me prep for behavioral interviews"*, *"mine a story for my bank"*,
+*"here's a BQ, help me answer it"*, or just run `/bq-skill`.
 
-## 待用户注入（护城河）
-`prompts/story-mining.md` 的追问话术、`frameworks/competency-tags.md` 的标签词典，
-是 coach 经验最该私有化的部分——把你独有的话术和标签喂进去，Skill 会越来越像"你"。
+## Principles
+1. **Bank first.** Always check `story-bank/_index.md` before mining — reuse beats re-digging.
+2. **One question at a time.** Mining is a conversation, not a questionnaire.
+3. **Never fabricate.** All material comes from the user's real experience; every metric is verified with them.
+
+## Versions
+- **v0.6 (current)** — Story Mining engine + single-story closed loop + bilingual output + lightweight mock +
+  **Flow E (JD-driven Top 20 questions + STAR templates + editorial HTML report, hooked into job-description-skill).**
+- v1 — deeper competency dictionary / company profiles, bank retrieval polish.
+- v2 — deeper mock interview (per-company questions + scored feedback).
+
+## What you inject (the moat)
+The probing scripts in `prompts/story-mining.md` and the tag dictionary in
+`frameworks/competency-tags.md` are where a coach's private experience lives — feed in your own phrasing
+and tags and the skill grows more and more like *you*.
+
+## Related skills
+- [job-description-skill](https://github.com/yanliudesign/job-description-skill) — JD Decoder & Offer Strategy OS
+- [resume-builder-skill](https://github.com/yanliudesign/resume-builder-skill) — Resume generation & beautification
