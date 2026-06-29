@@ -34,7 +34,7 @@ CJK 字体务必排在系统字体前,确保 PDF 导出中文可嵌入。
 - **Masthead**:meta-strip(mono 小字)→ 巨号 display 标题 + serif 斜体副标 → 2px ink header-rule → 四格 role-row(候选人/岗位/匹配度/风格)。
 - **Match verdict**:ink 黑底块 + accent 斜体 kicker,匹配画像 + 风险各一段。
 - **Section head**:serif 斜体罗马数字(i. ii. iii.)+ display 大标题 + mono pill,下方 1px ink 线。
-- **Top 5 must 卡**:左侧 accent 竖条 + 描边大号序号(text-stroke)+ display 题目;STAR 模板用 mono 标签 + 短横线;A/R 填空用 warn 琥珀虚线框;范例用 serif 斜体 kicker "Model answer"。
+- **Top 5 must 卡**:左侧 accent 竖条 + **纯黑(--ink)大号序号**(display 800,不要黄填充/不要 text-stroke 描边)+ display 题目;STAR 模板用 mono 标签 + 短横线;A/R 填空用 warn 琥珀虚线框;范例用 serif 斜体 kicker "Model answer"。
 - **Top 20**:`.qcard` 左边按四类着色,display 序号 + display 题目 + serif 斜体中文 + mono 元信息行 + 范例段。
 - **层级纪律**:题目(display 18–23px,主角)> 范例(body 14px)> 元信息(mono 10–12px,配角)。三档拉开,别让字号挤在一起。
 
