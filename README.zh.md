@@ -1,6 +1,8 @@
 # BQ Skill — Career Story OS
 
 > 🌐 **中文** · [English](./README.md)
+>
+> 📦 也可以从 **[offer-toolkit-skill](https://github.com/yanliudesign/offer-toolkit-skill)** 一站式打包获取（JD · Resume · BQ 三合一）。
 
 帮求职者把"会回答某道行为面试题"升级成"拥有一套可复用的职业故事库"。
 
